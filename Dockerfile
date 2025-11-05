@@ -9,18 +9,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN apt-get -qq install -y --no-install-recommends \
-        git \
-        gcc \
-        python3-pip \
-        wget \
-        zstd \
-        p7zip \
-        xz-utils \
-        curl \
-        tar && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install pip requirements
 COPY requirements.txt .
